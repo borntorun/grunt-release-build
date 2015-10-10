@@ -1,0 +1,8 @@
+.old
+.idea
+node_modules
+npm-debug.log
+tmp
+temp
+.tmp
+.temp
