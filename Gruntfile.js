@@ -32,14 +32,16 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     releaseit: {
+      options: {
+        type: 'major'
+      },
       default: {},
       modified: {
         options:{
-          dir: 'distrib',
           type: 'minor',
           silent: true,
           tasks: {
-            build: ['clean:teste1']
+            build: ['clean:teste2']
           },
           commit: 'Build/Release %v',
           tag: 'Version => %v'
@@ -66,6 +68,8 @@ module.exports = function(grunt) {
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
   grunt.registerTask('test', ['clean', 'releaseit', /*'nodeunit'*/]);
+
+  grunt.registerTask('build', ['clean:teste1']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
