@@ -1,7 +1,7 @@
 {
   "name": "grunt-release-it",
   "description": "Grunt plugin to build a new release for a package. Release a patch, minor or major release. Allows git-tag and git-push to remote repo/branch.",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "homepage": "https://github.com/borntorun/grunt-release-it",
   "author": {
     "name": "João Carvalho",
@@ -39,6 +39,7 @@
     "gruntplugin"
   ],
   "dependencies": {
+    "q": "^1.4.1",
     "readline-sync": "^1.2.21",
     "semver": "^5.0.3",
     "shelljs": "^0.5.3"

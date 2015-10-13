@@ -6,3 +6,5 @@ tmp
 temp
 .tmp
 .temp
+tasks/package1.json
+tasks/bower1.json

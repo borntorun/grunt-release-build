@@ -25,26 +25,26 @@ module.exports = function(grunt) {
 
     // Before generating any new files, remove any previously-created files.
     clean: {
-      tests: ['tmp']
+      tests: ['tmp'],
+      teste1: ['teste1'],
+      teste2: ['teste2']
     },
 
     // Configuration to be run (and then tested).
-    release_it: {
-      default_options: {
-        options: {
-        },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123']
+    releaseit: {
+      default: {},
+      modified: {
+        options:{
+          dir: 'distrib',
+          type: 'minor',
+          silent: true,
+          tasks: {
+            build: ['clean:teste1']
+          },
+          commit: 'Build/Release %v',
+          tag: 'Version => %v'
         }
-      },
-      custom_options: {
-        options: {
-          separator: ': ',
-          punctuation: ' !!!'
-        },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
+
       }
     },
 
