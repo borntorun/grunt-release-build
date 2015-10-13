@@ -116,8 +116,9 @@ module.exports = function( grunt ) {
     grunt.log.ok('createDir:', grunt.option('createDir'));
 
     Q.fcall(yes(format('Release [%s] (Y/n)?', options.type)))
-      .then(command('git symbolic-ref --short -q HEAD', 'Get current branch'))
-      .then(masterIsCurrentBranch)
+//      .then(command('git symbolic-ref --short -q HEAD', 'Get current branch'))
+//      .then(masterIsCurrentBranch)
+      .then(currentBranch('master'))
       .then(command('git status --porcelain', 'Get current status'))
       .then(statusIsOk)
       //.then(command('git describe --tags --abbrev=0','Get last tag'))
@@ -238,10 +239,36 @@ module.exports = function( grunt ) {
 
     }
 
-    function masterIsCurrentBranch( result ) {
-      var branch = 'master';
-      return compare(result.trim(), branch, format('Error in step [%s]. Branch [%s] is not the current branch. Output:[%s]', 'Get current branch', branch, result.trim()));
+    function currentBranch(branch) {
+
+      return function() {
+        var deferred = Q.defer();
+
+
+        Q.fcall(command('git symbolic-ref --short -q HEAD', 'Get current branch'))
+          .then(function(data){
+            if (data && data.trim() === branch) {
+              deferred.resolve(true);
+            }
+            else {
+              throw new Error(format('Error. Branch [%s] is not the current branch. Output:[%s]', branch, data.trim()));
+            }
+
+          })
+          .catch(function(err){
+            deferred.reject(err);
+          });
+
+        return deferred.promise;
+
+      };
+
     }
+
+//    function masterIsCurrentBranch( result ) {
+//      var branch = 'master';
+//      return compare(result.trim(), branch, format('Error in step [%s]. Branch [%s] is not the current branch. Output:[%s]', 'Get current branch', branch, result.trim()));
+//    }
 
     function compare( input, test, message ) {
       return Q.fcall(function() {
