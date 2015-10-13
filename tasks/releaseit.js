@@ -29,8 +29,12 @@ module.exports = function( grunt ) {
     var TYPES = {
       patch: 'patch',
       minor: 'minor',
-      major: 'major'
-    }
+      major: 'major',
+      premajor: 'premajor',
+      preminor: 'preminor',
+      prepatch: 'prepatch',
+      prerelease: 'prerelease'
+    };
 
     grunt.log.ok(JSON.stringify(this.options));
 
@@ -41,7 +45,7 @@ module.exports = function( grunt ) {
       tasks: {
         build: ['build']
       },
-      commit: 'Release version %v',
+      commit: 'Release version v%v',
       tag: 'Version %v'
     });
 
@@ -62,7 +66,7 @@ module.exports = function( grunt ) {
 
     var MSG = {
       INIT_TASK: 'Release [%s] (Y/n)?',
-      RUN_BUILD: 'Build/Release/Update to [%s]\n[Manifest files willbe updated/Build tasks will run] (Y/n)?',
+      RUN_BUILD: 'Build/Release/Update to [%s]\n[Manifest files will be updated/Build tasks will run] (Y/n)?',
       GIT_OP: 'Add, commit and create tag [%s] (Y/n)?',
       PUSH_REMOTE: 'Push (w/tags) to branch [master] on [%s] (Y/n)?',
       DONE: 'Release done: v%s committed, tagged and pushed to [%s] on [%s].\n'
@@ -118,12 +122,18 @@ module.exports = function( grunt ) {
     //      }
     //    }
 
+    /**
+     * Test type option is valid
+     */
     function verifyType() {
       if ( TYPES[options.type] == null ) {
         errorOption('type', options.type);
       }
     }
 
+    /**
+     * Test tasks.build option
+     */
     function verifyTasks() {
       if ( options.tasks.build ) {
         if ( isTypeString(options.tasks.build) ) {
@@ -145,6 +155,9 @@ module.exports = function( grunt ) {
       }
     }
 
+    /**
+     * Test other options
+     */
     function verifyOthers() {
       if ( !isTypeString(options.commit) ) {
         errorOption('commit', options.commit);
@@ -265,10 +278,13 @@ module.exports = function( grunt ) {
       }
       return Q.fcall(function() {
         var files = [
-          path.join(__dirname, 'package1.json'),
-          path.join(__dirname, 'bower1.json')
+//          path.join(__dirname, 'package1.json'),
+//          path.join(__dirname, 'bower1.json')
+          path.join('./', 'package.json'),
+          path.join('./', 'bower.json')
         ];
         files.forEach(function(item){
+          grunt.log.ok(item);
           if ( existsFilePath(item) ) {
             updateVersion(item);
           }
@@ -325,7 +341,7 @@ module.exports = function( grunt ) {
         }
 
         Q.fcall(command(format('git commit -m \'%s\'', options.commit.replace('%v', grunt.option('version'))), 'Git commit'))
-        //Q.fcall(command(format('echo "git commit -m \'%s\'"', options.commit.replace('%v', grunt.option('version'))), 'Git commit'))//TODO:temp
+        //Q.fcall(command(format('echo "git commit -m \'%s\'"', options.commit.replace('%v', grunt.option('version'))), 'Git commit', false))//TODO:temp
           .then(function( data ) {
             deferred.resolve(data);
           })
@@ -348,7 +364,7 @@ module.exports = function( grunt ) {
           throw new Error('Error in step [Git tag]. Version is not defined.');
         }
         Q.fcall(command(format('git tag -a v%s -m \'%s\'', grunt.option('version'), options.tag.replace('%v', grunt.option('version'))), 'Git tag'))
-        //Q.fcall(command(format('echo "git tag -a v%s -m \'%s\'"', grunt.option('version'), options.tag.replace('%v', grunt.option('version'))), 'Git tag'))
+        //Q.fcall(command(format('echo "git tag -a v%s -m \'%s\'"', grunt.option('version'), options.tag.replace('%v', grunt.option('version'))), 'Git tag', false))//TODO:temp
           .then(function( data ) {
             deferred.resolve(data);
           })
@@ -414,8 +430,8 @@ module.exports = function( grunt ) {
         if (!grunt.option('remote')) {
           throw new Error('Error in step [Git push]. Remote is not defined.');
         }
-        Q.fcall(command(format('git push %s master --tags', grunt.option('remote')), 'Git push'))
-        //Q.fcall(command(format('echo "git push %s master --tags"', grunt.option('remote')), 'Git push', false))
+        Q.fcall(command(format('git push %s master --tags', grunt.option('remote')), 'Git push', false))
+        //Q.fcall(command(format('echo "git push %s master --tags"', grunt.option('remote')), 'Git push', false))//TODO:temp
           .then(function( data ) {
             deferred.resolve(data);
           })

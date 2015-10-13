@@ -8,3 +8,4 @@ temp
 .temp
 tasks/package1.json
 tasks/bower1.json
+test/simulation

@@ -17,7 +17,17 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-release-it');
 ```
 
-## The "release_it" task
+## The "releaseit" task
+
+Deploy a build to a remote branch/repo. 
+
+Increment versions in manifests files (use git tag to discover the actual version)
+Run build tasks
+Add, commit, tag and push to a remote (allows choosing if several remotes are in use)
+
+* for now branch master is assumed (local and remote)
+
+Typical use: a package distributes its files in a distribution directory; the directory is part of the repo.   
 
 ### Overview
 In your project's Gruntfile, add a section named `releaseit` to the data object passed into `grunt.initConfig()`.
@@ -37,32 +47,88 @@ grunt.initConfig({
 
 ### Options
 
-#### options.
+#### type
 Type: `String`
-Default value: `',  '`
+Default value: `patch`
 
-...description
+The release type according the semver options. Allows:
+patch|minor|major|premajor|preminor|prepatch|prerelease
+
+#### silent
+Type: `Boolean`
+Default value: `false`
+
+With the default value (false), all writable/critical operations will be preceded by a quastion confirmation to the user
+
+#### tasks
+Type: `Object`
+Default value: `{build: ['build']}`
+
+An object to reference the grunt tasks to execute on certain fases of the release task process.
+tasks.build : `String|[String]`
+
+If an array with tasks is passed, they will be executed in sequence; any error in one of them will stop the process. 
+
+#### commit
+Type: `String`
+Default value: `Release version v%v`
+
+The commit message to use when commiting changes. `%v` will be replaced with the version number to be released.
+
+#### tag
+Type: `String`
+Default value: `Version %v`
+
+The tag message to use when creating the release tag. `%v` will be replaced with the version number to be released.
+
+
 
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with whatever. 
-So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+In this example, a minor version is released with "no confirmations steps" and executing the clean, test and build tasks. 
 
 ```js
 grunt.initConfig({
-  release_it: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
+  releaseit: {
+    minor: {
+      options: {
+        type: 'minor',
+        silent: true,
+        tasks: {
+          build: ['clean', 'test', 'build']
+        }
+      }
+    }    
+  }
 });
 ```
 
+If in package.json | bower.json version is '0.0.0'. 
+The result will be:
+- in those files version will be '0.1.0'
+- the tasks 'clean', 'test', 'build' will run
+- the changes produced will be added to git
+- the changes will be comitted with a commit message 'Release version v0.1.0'
+- there will be a tag v0.1.0 with message 'Version 0.1.0'
+- the brach 'master' will be pushed to the master branch in remote name choosen
+  - if only one remote exists it will be used without question the user
 
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+So supose that build task produce a `dist` folder with release files this folder will be included to the git repo.
 
-## Release History
-_(Nothing yet)_
+### Contribution
+
+Post bugs and feature requests to the [Github issue tracker](https://github.com/borntorun/grunt-release-it/issues). In lieu of a formal styleguide, take care to maintain the existing coding style. Lint and test your code using [Grunt](https://github.com/gruntjs/grunt).
+* Contributions and comments are welcome.
+
+### Authors
+
+* **João Carvalho** 
+  * [@jmmtcarvalho](https://twitter.com/jmmtcarvalho) 
+  * [GitHub](https://github.com/borntorun)
+
+### License
+
+Copyright (c) 2015 João Carvalho
+
+Licensed under the MIT License
