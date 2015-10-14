@@ -1,7 +1,7 @@
 {
   "name": "grunt-release-build",
   "description": "Grunt plugin to build a new release for a package. Run build tasks, update manifests, release a patch, minor or major release. Allows git-tag and git-push to remote repository.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/borntorun/grunt-release-build",
   "author": {
     "name": "João Carvalho",
