@@ -26,7 +26,18 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     releaseit: {
-      default: {}/*,
+      default: {},
+      minor: {
+        options: {
+          type: 'minor'
+        }
+      },
+      major: {
+        options: {
+          type: 'major'
+        }
+      }
+      /*,
       modified: {
         options:{
           type: 'minor',
