@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     releaseit: {
-      default: {},
+      default: {}/*,
       modified: {
         options:{
           type: 'minor',
@@ -38,7 +38,7 @@ module.exports = function(grunt) {
           tag: 'Version => %v'
         }
 
-      }
+      }*/
     },
     watch: {
       tests: {
@@ -77,6 +77,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-test');
 
+  grunt.registerTask('buils', ['jshint']);
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
