@@ -1,6 +1,6 @@
 {
   "name": "grunt-release-it",
-  "description": "Grunt plugin to build a new release for a package. Release a patch, minor or major release. Allows git-tag and git-push to remote repo/branch.",
+  "description": "Grunt plugin to build a new release for a package. Run build tasks, update manifests, release a patch, minor or major release. Allows git-tag and git-push to remote repository.",
   "version": "0.0.0",
   "homepage": "https://github.com/borntorun/grunt-release-it",
   "author": {
@@ -44,7 +44,7 @@
     "grunt": "~0.4.5"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin grunt plugin deploy build automation install release tag"
   ],
   "dependencies": {
     "q": "^1.4.1",

@@ -36,7 +36,7 @@ module.exports = function( grunt ) {
       prerelease: 'prerelease'
     };
 
-    grunt.log.ok(JSON.stringify(this.options));
+    grunt.verbose.writeln(JSON.stringify(this.options));
 
     var options = this.options({
       //dir: DIR_DIST,
@@ -278,8 +278,6 @@ module.exports = function( grunt ) {
       }
       return Q.fcall(function() {
         var files = [
-//          path.join(__dirname, 'package1.json'),
-//          path.join(__dirname, 'bower1.json')
           path.join('./', 'package.json'),
           path.join('./', 'bower.json')
         ];

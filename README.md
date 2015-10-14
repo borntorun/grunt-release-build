@@ -19,11 +19,11 @@ grunt.loadNpmTasks('grunt-release-it');
 
 ## The "releaseit" task
 
-Deploy a build to a remote branch/repo. 
-
 Increment versions in manifests files (use git tag to discover the actual version)
-Run build tasks
-Add, commit, tag and push to a remote (allows choosing if several remotes are in use)
+
+Run build tasks, update manifests, release a patch, minor or major release.
+
+Allows git-tag and git-push to remote repository (allows choosing if several remotes are in use).
 
 * for now branch master is assumed (local and remote)
 
