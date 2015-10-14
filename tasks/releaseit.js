@@ -282,7 +282,7 @@ module.exports = function( grunt ) {
           path.join('./', 'bower.json')
         ];
         files.forEach(function(item){
-          grunt.log.ok(item);
+          //grunt.log.ok(item);
           if ( existsFilePath(item) ) {
             updateVersion(item);
           }
