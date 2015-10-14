@@ -64,7 +64,7 @@ With the default value (false), all writable/critical operations will be precede
 Type: `Object`
 Default value: `{build: ['build']}`
 
-An object to reference the grunt tasks to execute on certain fases of the release task process.
+An object to reference the grunt tasks responsable to build the package.
 tasks.build : `String|[String]`
 
 If an array with tasks is passed, they will be executed in sequence; any error in one of them will stop the process. 
