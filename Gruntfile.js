@@ -94,6 +94,8 @@ module.exports = function(grunt) {
   // plugin's task(s), then test the result.
   grunt.registerTask('test', ['mochaTest']);
 
+  grunt.registerTask('release', ['releaseit:default']);
+
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
 
