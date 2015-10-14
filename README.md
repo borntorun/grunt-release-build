@@ -1,4 +1,4 @@
-# grunt-release-it
+# grunt-release-build
 
 > Grunt plugin to build a new release for a package. Release a patch, minor or major release. Allows git-tag and git-push to remote repo/branch.
 
@@ -8,16 +8,16 @@ This plugin requires Grunt `~0.4.5`
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-npm install grunt-release-it --save-dev
+npm install grunt-release-build --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('grunt-release-it');
+grunt.loadNpmTasks('grunt-release-build');
 ```
 
-## The "releaseit" task
+## The "releasebuild" task
 
 Increment versions in manifests files (use git tag to discover the actual version)
 
@@ -30,11 +30,11 @@ Allows git-tag and git-push to remote repository (allows choosing if several rem
 Typical use: a package distributes its files in a distribution directory; the directory is part of the repo.   
 
 ### Overview
-In your project's Gruntfile, add a section named `releaseit` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `releasebuild` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  releaseit: {
+  releasebuild: {
     options: {
       // Task-specific options go here.
     },
@@ -90,7 +90,7 @@ In this example, a minor version is released with "no confirmations steps" and e
 
 ```js
 grunt.initConfig({
-  releaseit: {
+  releasebuild: {
     minor: {
       options: {
         type: 'minor',
@@ -118,7 +118,7 @@ So supose that build task produce a `dist` folder with release files this folder
 
 ### Contribution
 
-Post bugs and feature requests to the [Github issue tracker](https://github.com/borntorun/grunt-release-it/issues). In lieu of a formal styleguide, take care to maintain the existing coding style. Lint and test your code using [Grunt](https://github.com/gruntjs/grunt).
+Post bugs and feature requests to the [Github issue tracker](https://github.com/borntorun/grunt-release-build/issues). In lieu of a formal styleguide, take care to maintain the existing coding style. Lint and test your code using [Grunt](https://github.com/gruntjs/grunt).
 * Contributions and comments are welcome.
 
 ### Authors

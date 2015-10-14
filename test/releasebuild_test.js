@@ -67,7 +67,7 @@ function execScenario ( cb ) {
   });
 }
 
-describe('releaseit', function() {
+describe('releasebuild', function() {
 
   this.timeout(120000);
 

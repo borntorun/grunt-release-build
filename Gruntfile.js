@@ -1,6 +1,6 @@
 /*
- * grunt-release-it
- * https://github.com/borntorun/grunt-release-it
+ * grunt-release-build
+ * https://github.com/borntorun/grunt-release-build
  *
  * Copyright (c) 2015 João Carvalho
  * Licensed under the MIT license.
@@ -25,7 +25,7 @@ module.exports = function(grunt) {
 
 
     // Configuration to be run (and then tested).
-    releaseit: {
+    releasebuild: {
       default: {},
       minor: {
         options: {
@@ -73,7 +73,7 @@ module.exports = function(grunt) {
     // Unit tests.
     mochaTest: {
       test: {
-        src: ['test/releaseit_test.js']
+        src: ['test/releasebuild_test.js']
       }
     }
 
@@ -94,7 +94,7 @@ module.exports = function(grunt) {
   // plugin's task(s), then test the result.
   grunt.registerTask('test', ['mochaTest']);
 
-  grunt.registerTask('release', ['releaseit:default']);
+  grunt.registerTask('release', ['releasebuild:default']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);

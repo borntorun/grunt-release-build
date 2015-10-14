@@ -1,23 +1,23 @@
 {
-  "name": "grunt-release-it",
+  "name": "grunt-release-build",
   "description": "Grunt plugin to build a new release for a package. Run build tasks, update manifests, release a patch, minor or major release. Allows git-tag and git-push to remote repository.",
   "version": "0.1.2",
-  "homepage": "https://github.com/borntorun/grunt-release-it",
+  "homepage": "https://github.com/borntorun/grunt-release-build",
   "author": {
     "name": "João Carvalho",
     "email": "jmmtcarvalho@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:borntorun/grunt-release-it.git"
+    "url": "git@github.com:borntorun/grunt-release-build.git"
   },
   "bugs": {
-    "url": "https://github.com/borntorun/grunt-release-it/issues"
+    "url": "https://github.com/borntorun/grunt-release-build/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/borntorun/grunt-release-it/blob/master/LICENSE-MIT"
+      "url": "https://github.com/borntorun/grunt-release-build/blob/master/LICENSE-MIT"
     }
   ],
   "engines": {

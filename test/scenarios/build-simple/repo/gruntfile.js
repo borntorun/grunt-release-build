@@ -6,7 +6,7 @@ module.exports = function( grunt ) {
   // add custom tasks
 
   // NOTE: cwd is `test/simulation/<scenario>/repo`
-  //to get the releaseit task
+  //to get the releasebuild task
   grunt.loadTasks('../../../../tasks');
   //to get the concat task
   grunt.loadTasks('../../../../node_modules/grunt-contrib-concat/tasks');
@@ -18,7 +18,7 @@ module.exports = function( grunt ) {
     /**
      * Case: task with default options
      */
-    releaseit: {
+    releasebuild: {
       default: {}
     },
     //this tasks just simulate a build operation
@@ -35,7 +35,7 @@ module.exports = function( grunt ) {
 
 
   // default task
-  grunt.registerTask('default', ['releaseit']);
+  grunt.registerTask('default', ['releasebuild']);
 
   //build task poins to the mock concat
   grunt.registerTask('build', ['concat']);

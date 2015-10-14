@@ -15,7 +15,7 @@ grunt watch:tests
 ## Layout
 ```
 test/
-    releaseit_test.js        - contains tests to be executed
+    releasebuild_test.js        - contains tests to be executed
     scenarios/      - different scenarios to be tested 
         <name>/
           repo/     - repository simulating the package to release (to do tests on)
@@ -40,9 +40,9 @@ Working directory: "scenarios/build-simple/"
 
 Source code is in "/*"
 
-grunt-release-it task is located in "gruntfile.js"
+grunt-release-build task is located in "gruntfile.js"
 
-The test case can be found in "/test/releaseit_test.js", high level test flow:
+The test case can be found in "/test/releasebuild_test.js", high level test flow:
 	- purge `simulation/`
 	- copy `scenarios/build-simple/**` to `simulation/build-simple/`
 	- change working directory to `simulation/build-simple/`
@@ -52,7 +52,7 @@ The "build-simple" test case does the following:
   - create remote repo pointing to `simulation/build-simple/remote`
 	- prepare repo (git operations on repo: init, add, commit, add remote)
 	- runs execScenario()
-		- which executes `grunt default` (which will run the releaseit task)
+		- which executes `grunt default` (which will run the releasebuild task)
 		- which executes `git clone remote validation`
 	- does validations/expectations to results
 ```
