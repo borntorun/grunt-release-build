@@ -51,5 +51,10 @@
     "readline-sync": "^1.2.21",
     "semver": "^5.0.3",
     "shelljs": "^0.5.3"
-  }
+  },
+  "files": [
+    "tasks",
+    "README.md",
+    "LICENCE_MIT"
+  ]
 }
