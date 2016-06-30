@@ -178,6 +178,7 @@ module.exports = function( grunt ) {
 
         Q.fcall(command('git symbolic-ref --short -q HEAD', 'Get current branch'))
           .then(function( data ) {
+            console.log('data=',data);
             if ( data && data.trim() === branch ) {
               deferred.resolve(true);
             }
@@ -186,6 +187,7 @@ module.exports = function( grunt ) {
             }
           })
           .catch(function( err ) {
+            console.log('err=',err);
             deferred.reject(err);
           });
         return deferred.promise;
@@ -466,15 +468,20 @@ module.exports = function( grunt ) {
 
         var deferred = Q.defer();
         var executed = shelljs.exec(cmdline, {silent: silent});
+
+        console.log(executed);
+
         var code = executed.code;
         if ( code === 0 ) {
           grunt.verbose.writeln(format('End step [%s]-OK',step));
-          deferred.resolve(executed.output);
+          deferred.resolve(executed.stdout);
         }
         else {
 
-          deferred.reject(new Error(format('Error in step [%s]. Error Code:[%s]. Error output:[%s]', step, code, executed.output)));
+          deferred.reject(new Error(format('Error in step [%s]. Error Code:[%s]. Error output:[%s]', step, code, executed.stdout + executed.stderr)));
         }
+
+
         return deferred.promise;
       };
     }

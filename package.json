@@ -27,21 +27,21 @@
     "test": "grunt test"
   },
   "devDependencies": {
-    "async": "^1.4.2",
+    "async": "^2.0.0-rc.6",
     "chai": "^3.3.0",
-    "fs-extra": "^0.24.0",
-    "grunt": "~0.4.5",
-    "grunt-cli": "^0.1.13",
-    "grunt-contrib-clean": "^0.5.0",
-    "grunt-contrib-concat": "^0.5.1",
-    "grunt-contrib-jshint": "^0.9.2",
-    "grunt-contrib-watch": "^0.6.1",
+    "fs-extra": "^0.30.0",
+    "grunt": "~1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
     "grunt-mocha-test": "^0.12.7",
-    "lodash": "^3.10.1",
+    "lodash": "^4.13.1",
     "mocha": "^2.3.3"
   },
   "peerDependencies": {
-    "grunt": "~0.4.5"
+    "grunt": "~1.0.1"
   },
   "keywords": [
     "gruntplugin grunt plugin deploy build automation install release tag"
@@ -50,7 +50,7 @@
     "q": "^1.4.1",
     "readline-sync": "^1.2.21",
     "semver": "^5.0.3",
-    "shelljs": "^0.5.3"
+    "shelljs": "^0.7.0"
   },
   "files": [
     "tasks",
