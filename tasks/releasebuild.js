@@ -178,7 +178,7 @@ module.exports = function( grunt ) {
 
         Q.fcall(command('git symbolic-ref --short -q HEAD', 'Get current branch'))
           .then(function( data ) {
-            console.log('data=',data);
+            //console.log('data=',data);
             if ( data && data.trim() === branch ) {
               deferred.resolve(true);
             }
@@ -469,7 +469,7 @@ module.exports = function( grunt ) {
         var deferred = Q.defer();
         var executed = shelljs.exec(cmdline, {silent: silent});
 
-        console.log(executed);
+        //console.log(executed);
 
         var code = executed.code;
         if ( code === 0 ) {

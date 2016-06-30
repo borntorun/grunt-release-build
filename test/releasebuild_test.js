@@ -48,7 +48,7 @@ function execScenario ( cb ) {
 
   tasks.push(function executeGruntCommand( next ) {
     //options
-    GRUNT_EXEC += ' -v --no-color';
+    GRUNT_EXEC += ' --no-color';
 
     execChildProcess(GRUNT_EXEC, {cwd: repoDir}, next);
   });
@@ -129,8 +129,6 @@ describe('releasebuild', function() {
     validationDir = path.join(mockRepoDir, scenarioPath, 'validation');
 
     try {
-      console.log('xxxxxxxxxxxxxxxx');
-
       fs.ensureDirSync(scenarioDir);
       // copy scenario to `test/simulation`
       fs.copySync('scenarios/' + scenarioPath, scenarioDir);
